@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BarChart3, Package, Briefcase, FileText, MessageSquare, Mail } from "lucide-react";
 

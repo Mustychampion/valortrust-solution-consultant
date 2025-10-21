@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { z } from "zod";

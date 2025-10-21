@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 interface PortfolioItem {
