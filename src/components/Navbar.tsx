@@ -1,111 +1,82 @@
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "./ui/button";
 
-export const Navbar = () => {
-  const { user, isAdmin, signOut } = useAuth();
-  const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/insights", label: "Insights" },
-    { href: "/contact", label: "Contact" },
-  ];
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut, isAdmin } = useAuth();
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            ValorTrust
-          </span>
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      <nav className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="bg-primary text-white px-3 py-2 rounded font-bold text-lg">
+              VTC
+            </div>
+            <span className="text-primary font-bold text-xl hidden sm:inline">VALORTRUST</span>
+          </Link>
 
-        <div className="hidden md:flex md:items-center md:gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === link.href ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          {isAdmin && (
-            <Link
-              to="/admin"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname.startsWith("/admin") ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              Admin Dashboard
-            </Link>
-          )}
-        </div>
-
-        <div className="hidden md:flex md:items-center md:gap-3">
-          {user ? (
-            <Button onClick={signOut} variant="outline">
-              Sign Out
-            </Button>
-          ) : (
-            <Button asChild>
-              <Link to="/auth">Sign In</Link>
-            </Button>
-          )}
-        </div>
-
-        <button
-          className="md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border/40 bg-background">
-          <div className="container py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.href ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="/#about" className="text-gray-700 hover:text-primary transition font-medium">About</a>
+            <Link to="/services" className="text-gray-700 hover:text-primary transition font-medium">Services</Link>
+            <Link to="/portfolio" className="text-gray-700 hover:text-primary transition font-medium">Portfolio</Link>
+            <Link to="/insights" className="text-gray-700 hover:text-primary transition font-medium">Blog</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-primary transition font-medium">Contact</Link>
+            
             {isAdmin && (
-              <Link
-                to="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-medium transition-colors hover:text-primary"
-              >
-                Admin Dashboard
-              </Link>
+              <Link to="/admin" className="text-gray-700 hover:text-primary transition font-medium">Admin</Link>
             )}
+            
             {user ? (
-              <Button onClick={() => { signOut(); setMobileMenuOpen(false); }} variant="outline" className="w-full">
-                Sign Out
-              </Button>
+              <Button onClick={signOut} variant="outline">Sign Out</Button>
             ) : (
-              <Button asChild className="w-full">
-                <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
-              </Button>
+              <Link to="/auth">
+                <Button className="bg-primary hover:bg-blue-800 text-white">Get Started</Button>
+              </Link>
             )}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-primary"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <i className={`fas fa-${isOpen ? 'times' : 'bars'} text-2xl`}></i>
+          </button>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t pt-4">
+            <div className="flex flex-col space-y-4">
+              <a href="/#about" className="text-gray-700 hover:text-primary transition font-medium">About</a>
+              <Link to="/services" className="text-gray-700 hover:text-primary transition font-medium">Services</Link>
+              <Link to="/portfolio" className="text-gray-700 hover:text-primary transition font-medium">Portfolio</Link>
+              <Link to="/insights" className="text-gray-700 hover:text-primary transition font-medium">Blog</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-primary transition font-medium">Contact</Link>
+              
+              {isAdmin && (
+                <Link to="/admin" className="text-gray-700 hover:text-primary transition font-medium">Admin</Link>
+              )}
+              
+              {user ? (
+                <Button onClick={signOut} variant="outline" className="w-full">Sign Out</Button>
+              ) : (
+                <Link to="/auth" className="w-full">
+                  <Button className="bg-primary hover:bg-blue-800 text-white w-full">Get Started</Button>
+                </Link>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
+
+export default Navbar;
