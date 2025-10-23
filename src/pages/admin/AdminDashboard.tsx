@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { BarChart3, Package, Briefcase, FileText, MessageSquare, Mail } from "lucide-react";
+import { BarChart3, Package, Briefcase, FileText, MessageSquare, Mail, UserCheck } from "lucide-react";
 
 const AdminDashboard = () => {
   const sections = [
+    {
+      title: "Role Approvals",
+      description: "Approve or reject user role requests",
+      icon: UserCheck,
+      href: "/admin/role-approvals",
+      color: "text-indigo-600"
+    },
     {
       title: "Service Categories",
       description: "Manage service categories",
