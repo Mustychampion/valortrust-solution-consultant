@@ -274,19 +274,31 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          requested_at: string
+          reviewed_at: string | null
+          reviewed_by: string | null
           role: Database["public"]["Enums"]["app_role"]
+          status: string
           user_id: string
         }
         Insert: {
           created_at?: string
           id?: string
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
           role: Database["public"]["Enums"]["app_role"]
+          status?: string
           user_id: string
         }
         Update: {
           created_at?: string
           id?: string
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
           role?: Database["public"]["Enums"]["app_role"]
+          status?: string
           user_id?: string
         }
         Relationships: [
