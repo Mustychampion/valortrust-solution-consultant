@@ -1,18 +1,12 @@
-# Welcome to your Lovable project
+# Welcome to your VALORTRUST project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/f9acec63-bcbb-4e14-87ad-256ad1a816dc
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/f9acec63-bcbb-4e14-87ad-256ad1a816dc) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
@@ -60,9 +54,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/f9acec63-bcbb-4e14-87ad-256ad1a816dc) and click on Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
@@ -70,4 +62,3 @@ Yes, you can!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
